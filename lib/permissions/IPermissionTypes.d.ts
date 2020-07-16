@@ -11,11 +11,6 @@ export interface IPermissionTypes {
     readonly Delete: number;
 }
 /**
- * @description
- * Type of IPermissionTypes key
- */
-export declare type IPermissionTypesKeyType = keyof IPermissionTypes;
-/**
  * @name PermissionTypes
  * @description
  * Permission Types constants

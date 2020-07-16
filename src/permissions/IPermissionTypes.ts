@@ -12,13 +12,6 @@ export interface IPermissionTypes {
 }
 
 /**
- * @description
- * Type of IPermissionTypes key
- */
-export type IPermissionTypesKeyType = keyof IPermissionTypes
-
-
-/**
  * @name PermissionTypes
  * @description 
  * Permission Types constants

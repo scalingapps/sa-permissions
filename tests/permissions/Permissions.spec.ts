@@ -1,9 +1,17 @@
 import { expect } from 'chai'
 import { 
-	PermissionTypes, 
-	IPermissionTypesKeyType 
+	IPermissionDomains
+} from '@/permissions/IPermissionDomains'
+import { 
+	IPermissionTypes,
+	PermissionTypes
 } from '@/permissions/IPermissionTypes'
 import { permissions } from '@/permissions/Permissions'
+
+// save some types to better enforce TypeSCript type checks here
+type IPermissionDomainsKeyType = keyof IPermissionDomains
+type IPermissionTypesKeyType = keyof IPermissionTypes
+
 
 // begin: unit tests helpers:
 const buildUserPermissionsFromKeys = (keys: IPermissionTypesKeyType[]): number => {

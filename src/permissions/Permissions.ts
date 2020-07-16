@@ -1,6 +1,3 @@
-import { PermissionGroups } from './IPermissionGroups'
-import { PermissionTypes } from './IPermissionTypes'
-
 export interface IPermissions {
     hasPermission(permissionType: number, userPermissions: number): boolean
 }
