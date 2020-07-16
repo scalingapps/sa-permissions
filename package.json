@@ -1,0 +1,38 @@
+{
+  "name": "sa-permissions",
+  "version": "1.0.0",
+  "description": "A package that helps make it easy to add permissions to your JavaScript/TypeScript app",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.spec.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scalingapps/sa-permissions.git"
+  },
+  "keywords": [
+    "permissions",
+    "javascript",
+    "typescript",
+    "frontend"
+  ],
+  "author": "Scalingapps",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/scalingapps/sa-permissions/issues"
+  },
+  "homepage": "https://github.com/scalingapps/sa-permissions#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.22",
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.6"
+  }
+}
