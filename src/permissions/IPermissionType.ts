@@ -1,9 +1,9 @@
 /**
- * @name IPermissionTypes
+ * @name IPermissionType
  * @description 
  * Permission Types interface
  */
-export interface IPermissionTypes {
+export interface IPermissionType {
 	readonly Reserved: number
 	readonly View: number
 	readonly Add: number
@@ -12,11 +12,11 @@ export interface IPermissionTypes {
 }
 
 /**
- * @name PermissionTypes
+ * @name PermissionType
  * @description 
  * Permission Types constants
  */
-export const PermissionTypes: IPermissionTypes = Object.freeze({
+export const PermissionType: IPermissionType = Object.freeze({
 	Reserved: 0,
 	View: 1,
 	Add: 2,
