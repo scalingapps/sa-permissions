@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+	"build": "tsc",
+	"git-clear": "git config --local credential.helper ''",
     "test": "mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.spec.ts"
   },
   "repository": {
