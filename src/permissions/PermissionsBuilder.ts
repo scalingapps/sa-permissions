@@ -1,0 +1,69 @@
+import { PermissionTypeInterface } from './PermissionType'
+
+/**
+ * @name PermissionsBuilderInterface
+ * @description
+ */
+export interface PermissionsBuilderInterface {
+  fromKeys(keys: string[]): number
+
+  byExclusion(keysToExclude: string[]): number
+
+  fromRange(fromValue: number, toValue: number): number
+}
+
+/**
+ * @name PermissionsBuilder
+ * @description
+ * Implements PermissionsBuilderInterface helper functions
+ * that can build permissions values from specific keys, 
+ * from a range of values, or by exluding specific keys
+ */
+export class PermissionsBuilder implements PermissionsBuilderInterface {
+  private types!: PermissionTypeInterface
+
+  constructor(types: PermissionTypeInterface) {
+    this.types = types
+  }
+
+  public fromKeys(keys: string[]): number {
+		const types = this.types
+		type keyType = keyof (typeof types)
+		
+    let userPermissions: number = 0
+    keys.forEach((key) => {
+      const value = this.types[key as keyType]
+      userPermissions = userPermissions | value
+    })
+    return userPermissions
+  }
+
+  public byExclusion(keysToExclude: string[]): number {
+		const types = this.types
+		type keyType = keyof (typeof types)
+
+    const keys: string[] = Object.getOwnPropertyNames(this.types).filter(
+      (key) => keysToExclude.indexOf(key as keyType) === -1
+    ) as string[]
+    return this.fromKeys(keys)
+  }
+
+  public fromRange(fromValue: number, toValue: number): number {
+		const types = this.types
+		type keyType = keyof (typeof types)
+
+    const keys: string[] = Object.getOwnPropertyNames(
+      this.types
+    ) as string[]
+    let userPermissions: number = 0
+
+    keys.forEach((key) => {
+      const value = this.types[key as keyType]
+      if (value >= fromValue && value <= toValue) {
+        userPermissions = userPermissions | value
+      }
+    })
+
+    return userPermissions
+  }
+}

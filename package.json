@@ -1,6 +1,6 @@
 {
   "name": "sa-permissions",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "A package that helps make it easy to add permissions to your JavaScript/TypeScript app",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

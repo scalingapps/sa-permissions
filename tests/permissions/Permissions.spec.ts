@@ -1,122 +1,29 @@
 import { expect } from 'chai'
-
-import { 
-	PermissionTypeInterface,
-	PermissionType,
-	Permissions
-} from '@/permissions'
+import { PermissionTypeInterface, PermissionType, Permissions, PermissionsBuilder } from '@/permissions'
 
 // save some types to better enforce TypeScript type checks within the unit tests
 type PermissionTypeInterfaceKeyType = keyof PermissionTypeInterface
 
-
-// begin: unit tests helpers:
-const buildUserPermissionsFromKeys = (keys: PermissionTypeInterfaceKeyType[]): number => {
-    let userPermissions: number = 0
-    keys.forEach((key) => {
-        const value = PermissionType[key]
-        userPermissions = userPermissions | value
-    })
-    return userPermissions
-}
-
-const buildUserPermissionsByExclusion = (keysToExclude: PermissionTypeInterfaceKeyType[]): number => {
-    const keys: PermissionTypeInterfaceKeyType[] = Object.getOwnPropertyNames(PermissionType)
-        .filter(key => keysToExclude.indexOf(key as PermissionTypeInterfaceKeyType) === -1) as PermissionTypeInterfaceKeyType[]
-    console.info('buildUserPermissionsByExclusion', keys)
-    return buildUserPermissionsFromKeys(keys);
-}
-
-const buildUserPermissionsFromRange = (fromValue: number, toValue: number): number => {
-    const keys: PermissionTypeInterfaceKeyType[] = Object.getOwnPropertyNames(PermissionType) as PermissionTypeInterfaceKeyType[]
-    let userPermissions: number = 0;
-    
-    keys.forEach((key) => {
-        const value = PermissionType[key]
-        if (value >= fromValue && value <= toValue) {
-            //console.info(`${key} value`, value)
-            userPermissions = userPermissions | value
-        }
-    })
-
-    return userPermissions;
-}
-// end: unit tests helpers:
-
 describe('Permissions', () => {
+  const builder = new PermissionsBuilder(PermissionType)
 
-    // begin: unit tests helper
-    describe('buildUserPermissionsFromKeys (unit test helper)', () => {
-        it('should return expected value when includes [View, Add] only ', () => {
-            // testing the unit test helper buildUserPermissionsFromKeys here
-            const userPermissions = buildUserPermissionsFromKeys(['View', 'Add'])
-			const expected = PermissionType.View | PermissionType.Add;
-            console.info('userPermissions', userPermissions, 'expected', expected)
-            expect(userPermissions).to.equal(expected)
-        })
+  describe('hasPermission', () => {
+    it('should return true when user userPermissions include View', () => {
+      const userPermissions = builder.fromRange(PermissionType.View, PermissionType.Delete)
+      let result = Permissions.hasPermission(PermissionType.View, userPermissions)
+      expect(true).to.equal(result)
     })
 
-    describe('buildUserPermissionsByExclusion (unit test helper)', () => {
-        it('should return expected value when excludes [Update, Delete]', () => {
-            // testing the unit test helper buildUserPermissionsByExclusion here
-            const userPermissions = buildUserPermissionsByExclusion(['Update', 'Delete'])
-			const expected = PermissionType.View | PermissionType.Add;
-            console.info('userPermissions', userPermissions, 'expected', expected)
-            expect(userPermissions).to.equal(expected)
-        })
+    it('should return false when user userPermissions do NOT include View', () => {
+      const userPermissions = builder.byExclusion(['View'])
+      const result = Permissions.hasPermission(PermissionType.View, userPermissions)
+      expect(false).to.equal(result)
     })
 
-    describe('buildUserPermissionsFromRange (unit test helper)', () => {
-        it('should return expected value when includes from View to Delete', () => {
-            // testing the unit test helper buildUserPermissionsFromRange here
-            const userPermissions = buildUserPermissionsFromRange(PermissionType.View, PermissionType.Update)
-			const expected = PermissionType.View | PermissionType.Add | PermissionType.Update;
-            console.info('userPermissions', userPermissions, 'expected', expected)
-            expect(userPermissions).to.equal(expected)
-        })
+    it('should return false when user userPermissions do NOT include Delete', () => {
+      const userPermissions = builder.byExclusion(['Delete'])
+      const result = Permissions.hasPermission(PermissionType.Delete, userPermissions)
+      expect(false).to.equal(result)
     })
-    // end: unit tests helper
-    
-    describe('hasPermission', () => {      
-
-        it('should return true when user userPermissions include View', () => {
-
-            const userPermissions = buildUserPermissionsFromRange(PermissionType.View, PermissionType.Delete)
-            console.info('userPermissions', userPermissions)
-
-            let result = Permissions.hasPermission(
-                PermissionType.View,
-                userPermissions
-            )
-            expect(true).to.equal(result)
-        })
-
-        it('should return false when user userPermissions do NOT include View', () => {
-
-            const userPermissions = buildUserPermissionsByExclusion(['View'])
-            console.info('userPermissions', userPermissions)
-
-            const result = Permissions.hasPermission(
-                PermissionType.View,
-                userPermissions
-            )
-
-            expect(false).to.equal(result)
-        })
-
-        it('should return false when user userPermissions do NOT include Delete', () => {
-
-            const userPermissions = buildUserPermissionsByExclusion(['Delete'])
-            console.info('userPermissions', userPermissions)
-
-            const result = Permissions.hasPermission(
-                PermissionType.Delete,
-                userPermissions
-            )
-
-            expect(false).to.equal(result)
-        })
-
-    })
-
+  })
 })

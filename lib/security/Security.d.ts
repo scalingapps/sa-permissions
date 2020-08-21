@@ -1,13 +1,32 @@
-import { SecurityItems } from './areas/SecurityItems';
-import { ISecurity, ISecurityHasPermissionsArgs } from './ISecurity';
+export interface HasPermissionsArgs {
+    userId: string;
+    domain: string;
+    permissionType: number;
+}
+export interface SecurityInterface {
+    addUserPermissions(params: {
+        userId: string;
+        permissions: {
+            [key: string]: number;
+        };
+    }): void;
+    hasPermissions(params: HasPermissionsArgs): boolean;
+}
 /**
  * @name Security
  * @description
- * Implements ISecurity
- * @remarks
+ * Implements the SecurityInterface. This will hold a lookup to each user permissions by domain.
+ * The data has to be added through the addUserpermissions after the user logs in your app.
+ * You can then use the hasPermissions method to check if a user has a specific permission on a specific domain.
  */
-export declare class Security implements ISecurity {
+export declare class Security implements SecurityInterface {
+    private permissionsByUser;
     constructor();
-    hasPermissions(args: ISecurityHasPermissionsArgs): boolean;
-    Items: SecurityItems;
+    addUserPermissions(params: {
+        userId: string;
+        permissions: {
+            [key: string]: number;
+        };
+    }): void;
+    hasPermissions(params: HasPermissionsArgs): boolean;
 }
