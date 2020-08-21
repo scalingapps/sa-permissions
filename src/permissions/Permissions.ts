@@ -32,7 +32,7 @@ export const Permissions: PermissionsStaticInterface = class implements Permissi
     const additionalPermissions: { [key: string]: number } = {}
 
     let factor = Object.keys(PermissionType).length - 1
-		// assign values to each new permission type
+    // assign values to each new permission type
     newTypes.forEach((type) => [
       // double previous value
       (additionalPermissions[type] = Math.pow(2, factor++)),

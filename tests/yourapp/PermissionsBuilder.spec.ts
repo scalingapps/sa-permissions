@@ -8,11 +8,8 @@ describe('PermissionsBuilder (of YourAppPermissionType)', () => {
   describe('fromKeys', () => {
     it('should return expected value when includes [View, Add, Share] only ', () => {
       const userPermissions = builder.fromKeys(['View', 'Add', 'Share'])
-      const expected = 
-				YourAppPermissionType.View 
-				| YourAppPermissionType.Add 
-				| YourAppPermissionType.Share
-			
+      const expected = YourAppPermissionType.View | YourAppPermissionType.Add | YourAppPermissionType.Share
+
       expect(userPermissions).to.equal(expected)
     })
   })

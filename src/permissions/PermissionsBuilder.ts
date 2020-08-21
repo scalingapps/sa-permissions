@@ -16,7 +16,7 @@ export interface PermissionsBuilderInterface {
  * @name PermissionsBuilder
  * @description
  * Implements PermissionsBuilderInterface helper functions
- * that can build permissions values from specific keys, 
+ * that can build permissions values from specific keys,
  * from a range of values, or by exluding specific keys
  */
 export class PermissionsBuilder implements PermissionsBuilderInterface {
@@ -27,9 +27,9 @@ export class PermissionsBuilder implements PermissionsBuilderInterface {
   }
 
   public fromKeys(keys: string[]): number {
-		const types = this.types
-		type keyType = keyof (typeof types)
-		
+    const types = this.types
+    type keyType = keyof typeof types
+
     let userPermissions: number = 0
     keys.forEach((key) => {
       const value = this.types[key as keyType]
@@ -39,8 +39,8 @@ export class PermissionsBuilder implements PermissionsBuilderInterface {
   }
 
   public byExclusion(keysToExclude: string[]): number {
-		const types = this.types
-		type keyType = keyof (typeof types)
+    const types = this.types
+    type keyType = keyof typeof types
 
     const keys: string[] = Object.getOwnPropertyNames(this.types).filter(
       (key) => keysToExclude.indexOf(key as keyType) === -1
@@ -49,12 +49,10 @@ export class PermissionsBuilder implements PermissionsBuilderInterface {
   }
 
   public fromRange(fromValue: number, toValue: number): number {
-		const types = this.types
-		type keyType = keyof (typeof types)
+    const types = this.types
+    type keyType = keyof typeof types
 
-    const keys: string[] = Object.getOwnPropertyNames(
-      this.types
-    ) as string[]
+    const keys: string[] = Object.getOwnPropertyNames(this.types) as string[]
     let userPermissions: number = 0
 
     keys.forEach((key) => {
