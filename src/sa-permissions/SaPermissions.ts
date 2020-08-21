@@ -1,23 +1,23 @@
 import { PermissionTypeInterface, PermissionType } from './PermissionType'
 
 /**
- * @name PermissionsStaticInterface
+ * @name SaPermissionsStaticInterface
  * @description
  * TypeScript trick to declare methods for static classes through interface
  */
-export interface PermissionsStaticInterface {
+export interface SaPermissionsStaticInterface {
   hasPermission(permissionType: number, userPermissions: number): boolean
   extendTypes(newTypes: string[]): PermissionTypeInterface
 }
 
-export interface PermissionsInterface {}
+export interface SaPermissionsInterface {}
 
 /**
- * @name PermissionsStaticInterface
+ * @name SaPermissions
  * @description
- * Export our static Permissions instance
+ * Export our static SaPermissions instance
  */
-export const Permissions: PermissionsStaticInterface = class implements PermissionsInterface {
+export const SaPermissions: SaPermissionsStaticInterface = class implements SaPermissionsInterface {
   public static hasPermission(permissionType: number, userPermissions: number): boolean {
     return permissionType === (userPermissions & permissionType)
   }

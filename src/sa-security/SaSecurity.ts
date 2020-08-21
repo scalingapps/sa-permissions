@@ -1,4 +1,4 @@
-import { Permissions } from '@/permissions'
+import { SaPermissions } from '@/sa-permissions'
 
 export interface HasPermissionsArgs {
   userId: string
@@ -12,13 +12,13 @@ export interface SecurityInterface {
 }
 
 /**
- * @name Security
+ * @name SaSecurity
  * @description
  * Implements the SecurityInterface. This will hold a lookup to each user permissions by domain.
  * The data has to be added through the addUserpermissions after the user logs in your app.
  * You can then use the hasPermissions method to check if a user has a specific permission on a specific domain.
  */
-export class Security implements SecurityInterface {
+export class SaSecurity implements SecurityInterface {
   private permissionsByUser: Map<string, { [key: string]: number }> = new Map<
     string,
     { [key: string]: number }
@@ -41,7 +41,7 @@ export class Security implements SecurityInterface {
       if (domainsPermissions && domainsPermissions[domain]) {
         // check permissions for the specific domain
         const value: number = domainsPermissions[domain]
-        return Permissions.hasPermission(permissionType, value)
+        return SaPermissions.hasPermission(permissionType, value)
       }
     }
 

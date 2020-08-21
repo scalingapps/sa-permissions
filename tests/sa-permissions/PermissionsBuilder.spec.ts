@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { PermissionTypeInterface, PermissionType, PermissionsBuilder } from '@/permissions'
+import { PermissionTypeInterface, PermissionType, PermissionsBuilder } from '@/sa-permissions'
 
 describe('PermissionsBuilder (of PermissionType)', () => {
   const builder = new PermissionsBuilder(PermissionType)

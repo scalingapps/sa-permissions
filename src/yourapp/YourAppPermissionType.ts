@@ -1,4 +1,4 @@
-import { PermissionTypeInterface, PermissionType, Permissions } from '../permissions'
+import { PermissionTypeInterface, PermissionType, SaPermissions } from '../sa-permissions'
 
 /*
 	In your application, you will be extending the PermissionTypeInterface with 
@@ -25,7 +25,7 @@ export interface YourAppPermissionTypeInterface extends PermissionTypeInterface 
  * TS there is not an easy way to programmatically get properties from an interface.
  * Just remember that these have ot match the property names in your interface (in this case Publish and Share)
  */
-export const YourAppPermissionType: YourAppPermissionTypeInterface = Permissions.extendTypes([
+export const YourAppPermissionType: YourAppPermissionTypeInterface = SaPermissions.extendTypes([
   'Publish',
   'Share',
 ]) as YourAppPermissionTypeInterface
