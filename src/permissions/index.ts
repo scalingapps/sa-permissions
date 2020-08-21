@@ -1,2 +1,2 @@
-export * from './IPermissionType'
+export * from './PermissionType'
 export * from './Permissions'

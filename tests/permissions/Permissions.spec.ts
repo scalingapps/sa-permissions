@@ -1,20 +1,17 @@
 import { expect } from 'chai'
-// import { 
-// 	IPermissionDomains
-// } from '@/permissions/IPermissionDomains'
-import { 
-	IPermissionType,
-	PermissionType
-} from '@/permissions/IPermissionType'
-import { permissions } from '@/permissions/Permissions'
 
-// save some types to better enforce TypeSCript type checks here
-//type IPermissionDomainsKeyType = keyof IPermissionDomains
-type IPermissionTypeKeyType = keyof IPermissionType
+import { 
+	PermissionTypeInterface,
+	PermissionType,
+	Permissions
+} from '@/permissions'
+
+// save some types to better enforce TypeScript type checks within the unit tests
+type PermissionTypeInterfaceKeyType = keyof PermissionTypeInterface
 
 
 // begin: unit tests helpers:
-const buildUserPermissionsFromKeys = (keys: IPermissionTypeKeyType[]): number => {
+const buildUserPermissionsFromKeys = (keys: PermissionTypeInterfaceKeyType[]): number => {
     let userPermissions: number = 0
     keys.forEach((key) => {
         const value = PermissionType[key]
@@ -23,15 +20,15 @@ const buildUserPermissionsFromKeys = (keys: IPermissionTypeKeyType[]): number =>
     return userPermissions
 }
 
-const buildUserPermissionsByExclusion = (keysToExclude: IPermissionTypeKeyType[]): number => {
-    const keys: IPermissionTypeKeyType[] = Object.getOwnPropertyNames(PermissionType)
-        .filter(key => keysToExclude.indexOf(key as IPermissionTypeKeyType) === -1) as IPermissionTypeKeyType[]
+const buildUserPermissionsByExclusion = (keysToExclude: PermissionTypeInterfaceKeyType[]): number => {
+    const keys: PermissionTypeInterfaceKeyType[] = Object.getOwnPropertyNames(PermissionType)
+        .filter(key => keysToExclude.indexOf(key as PermissionTypeInterfaceKeyType) === -1) as PermissionTypeInterfaceKeyType[]
     console.info('buildUserPermissionsByExclusion', keys)
     return buildUserPermissionsFromKeys(keys);
 }
 
 const buildUserPermissionsFromRange = (fromValue: number, toValue: number): number => {
-    const keys: IPermissionTypeKeyType[] = Object.getOwnPropertyNames(PermissionType) as IPermissionTypeKeyType[]
+    const keys: PermissionTypeInterfaceKeyType[] = Object.getOwnPropertyNames(PermissionType) as PermissionTypeInterfaceKeyType[]
     let userPermissions: number = 0;
     
     keys.forEach((key) => {
@@ -87,7 +84,7 @@ describe('Permissions', () => {
             const userPermissions = buildUserPermissionsFromRange(PermissionType.View, PermissionType.Delete)
             console.info('userPermissions', userPermissions)
 
-            let result = permissions.hasPermission(
+            let result = Permissions.hasPermission(
                 PermissionType.View,
                 userPermissions
             )
@@ -99,7 +96,7 @@ describe('Permissions', () => {
             const userPermissions = buildUserPermissionsByExclusion(['View'])
             console.info('userPermissions', userPermissions)
 
-            const result = permissions.hasPermission(
+            const result = Permissions.hasPermission(
                 PermissionType.View,
                 userPermissions
             )
@@ -112,7 +109,7 @@ describe('Permissions', () => {
             const userPermissions = buildUserPermissionsByExclusion(['Delete'])
             console.info('userPermissions', userPermissions)
 
-            const result = permissions.hasPermission(
+            const result = Permissions.hasPermission(
                 PermissionType.Delete,
                 userPermissions
             )

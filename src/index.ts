@@ -1,3 +1,3 @@
-export * from './permissions/IPermissionType'
+export * from './permissions/PermissionTypeInterface'
 export * from './security/ISecurityDomains'
-export * from './security/ISecurity'
+export * from './security/SecurityInterface'

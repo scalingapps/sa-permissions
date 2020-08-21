@@ -1,3 +1,3 @@
 export * from './ISecurityDomains'
 export * from './SecurityDomainBase'
-export * from './ISecurity'
+export * from './SecurityInterface'

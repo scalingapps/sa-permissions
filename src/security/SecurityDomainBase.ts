@@ -1,12 +1,12 @@
 
-import { ISecurity } from './ISecurity'
+import { SecurityInterface } from './Security'
 
-export interface ISecurityDomain {
+export interface SecurityDomainInterface {
 }
 
-export class SecurityDomainBase implements ISecurityDomain {
-    security!: ISecurity
-    constructor(security: ISecurity) {
+export class SecurityDomainBase implements SecurityDomainInterface {
+    security!: SecurityInterface
+    constructor(security: SecurityInterface) {
         this.security = security
     }
 }
