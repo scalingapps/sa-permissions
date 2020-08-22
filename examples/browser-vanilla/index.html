@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+  <head>
+    <title>sa-permissions browser vanilla js</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <style>
+      body {
+        font-family: 'Open Sans', serif;
+        font-size: 12px;
+      }
+    </style>
+    <script src="https://unpkg.com/underlog@0.9.7/lib/browser.min.js"></script>
+    <script src="https://unpkg.com/sa-permissions@1.1.3/lib/browser.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // create Chrome transport
+      const chromeTransport = new Underlog.ChromeTransport({
+        level: 'error',
+        levelOnly: false,
+      });
+
+      // get target for HtmlTransport
+      const domElement = document.getElementById('htmlTransportTarget');
+      // create HtmlTransport
+      const htmlTransport = new Underlog.HtmlTransport({
+        level: 'error',
+        levelOnly: false,
+        domElement: domElement
+      });
+
+      // create logger with 2 transports: Chrome and Html
+      const logger = new Underlog.Logger({
+        transports: [
+          chromeTransport,
+          htmlTransport
+        ]
+      });
+
+			// sa-permissions
+			const YourAppPermissionType = Sa.Permissions.extendTypes([
+				'Publish',
+				'Share',
+			]);
+			logger.info('YourAppPermissionType', YourAppPermissionType);
+			
+			// setup Security
+  		const appSecurity = new Sa.Security();
+
+			// this is to help tests, but you would have the value stored in a db or alike
+			const builder = new Sa.PermissionsBuilder(Sa.YourAppPermissionType);
+			const userId = 'your-app-user';
+
+			// add some user permissions (type of AddUserPermissionsArgs)
+			const userPermissions = {
+				userId: userId,
+				permissions: {
+					Items: builder.fromKeys(['View', 'Publish', 'Share']),
+					Accounts: builder.fromKeys(['View', 'Publish']),
+				},
+			};
+			appSecurity.addUserPermissions(userPermissions);
+
+			logger.info('userPermissions', userPermissions);
+
+			const params = { // HasPermissionsArgs
+				userId: userId,
+				domain: 'Items',
+				permissionType: YourAppPermissionType.View,
+			};
+
+			logger.highlight(`${ params.domain } domain results:`);
+
+			params.permissionType = YourAppPermissionType.View
+      logger.debug(`${ params.domain }: can View`, appSecurity.hasPermissions(params))
+
+      params.permissionType = YourAppPermissionType.Add
+      logger.debug(`${ params.domain }: can Add`, appSecurity.hasPermissions(params))
+
+      params.permissionType = YourAppPermissionType.Publish
+      logger.debug(`${ params.domain }: can Publish`, appSecurity.hasPermissions(params))
+
+			params.permissionType = YourAppPermissionType.Share
+			logger.debug(`${ params.domain }: can Share`, appSecurity.hasPermissions(params))
+
+			params.domain = `Accounts`;
+			logger.highlight(`${ params.domain } domain results:`);
+
+			params.permissionType = YourAppPermissionType.View
+      logger.debug(`${ params.domain }: can View`, appSecurity.hasPermissions(params))
+
+      params.permissionType = YourAppPermissionType.Add
+      logger.debug(`${ params.domain }: can Add`, appSecurity.hasPermissions(params))
+
+      params.permissionType = YourAppPermissionType.Publish
+      logger.debug(`${ params.domain }: can Publish`, appSecurity.hasPermissions(params))
+
+			params.permissionType = YourAppPermissionType.Share
+			logger.debug(`${ params.domain }: can Share`, appSecurity.hasPermissions(params))
+
+    });
+    </script>
+  </head>
+  <body>
+    <h1>sa-permissions browser vanilla js</h1>
+    <hr/>
+    <div id="htmlTransportTarget">
+    </div>
+  </body>
+</body>
+
