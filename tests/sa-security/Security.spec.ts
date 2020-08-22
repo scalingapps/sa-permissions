@@ -1,10 +1,10 @@
 import { expect } from 'chai'
 import { PermissionType, PermissionsBuilder } from '@/sa-permissions'
-import { HasPermissionsArgs, SaSecurity } from '@/sa-security'
+import { HasPermissionsArgs, AddUserPermissionsArgs, Security } from '@/sa-security'
 
-describe('SaSecurity', () => {
+describe('Security', () => {
   // setup
-  const appSecurity = new SaSecurity()
+  const appSecurity = new Security()
   // this is to help tests, but you would have the value stored in a db or alike
   const builder = new PermissionsBuilder(PermissionType)
 
@@ -17,7 +17,7 @@ describe('SaSecurity', () => {
       Items: builder.fromKeys(['View', 'Add']),
       Accounts: builder.fromKeys(['View']),
     },
-  })
+  } as AddUserPermissionsArgs)
 
   describe('Domain: Items:', () => {
     const params: HasPermissionsArgs = {

@@ -6,10 +6,10 @@ export default [
   {
     input: 'lib/index.js',
     output: {
-      name: 'SaPermissions',
+      name: 'Sa',
       file: 'lib/browser.min.js',
       format: 'iife',
-      sourcemap: true,
+      sourcemap: false,
     },
     plugins: [
       resolve({ browser: true }),

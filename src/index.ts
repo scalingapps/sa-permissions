@@ -1,12 +1,12 @@
-// export * from './sa-permissions'
-// export * from './sa-security'
-// export * from './yourapp/YourAppPermissionType'
+export * from './sa-permissions'
+export * from './sa-security/Security'
+export * from './yourapp/YourAppPermissionType'
 
-import { SaPermissions, PermissionType, PermissionsBuilder } from '@/sa-permissions'
-import { SaSecurity } from '@/sa-security'
-export default {
-	PermissionType,
-	PermissionsBuilder,
-	SaPermissions,
-	SaSecurity
-}
+// import { Permissions, PermissionType, PermissionsBuilder } from './sa-permissions'
+// import { Security } from './sa-security/Security'
+// export const Sa = {
+// 	PermissionType,
+// 	PermissionsBuilder,
+// 	Permissions,
+// 	Security
+// }

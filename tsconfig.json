@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
+		"target": "es2015",
+		"module": "commonjs",
+		"outDir": "lib",
+    "strict": true,
     "declaration": true,
     "preserveSymlinks": true,
     "stripInternal": true,
     "skipLibCheck": true,
-    "outDir": "lib",
-    "strict": true,
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
@@ -15,12 +15,28 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": false,
     "baseUrl": ".",
-    "types": ["mocha", "chai"],
+    "types": [
+      "mocha",
+      "chai",
+      "jsdom"
+    ],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "tests/**/*.ts"]
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "tests/**/*.ts"
+  ]
 }

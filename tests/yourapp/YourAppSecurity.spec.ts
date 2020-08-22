@@ -1,11 +1,11 @@
 import { expect } from 'chai'
-import { HasPermissionsArgs, SaSecurity } from '@/sa-security'
+import { HasPermissionsArgs, Security } from '@/sa-security'
 import { PermissionsBuilder } from '@/sa-permissions'
 import { YourAppPermissionType } from '@/yourapp/YourAppPermissionType'
 
 describe('appSecurity', () => {
-  // setup SaSecurity
-  const appSecurity = new SaSecurity()
+  // setup Security
+  const appSecurity = new Security()
 
   // this is to help tests, but you would have the value stored in a db or alike
   const builder = new PermissionsBuilder(YourAppPermissionType)
