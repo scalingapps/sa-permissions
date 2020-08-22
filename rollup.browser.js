@@ -13,10 +13,10 @@ export default [
     },
     plugins: [
       resolve({ browser: true }),
-      commonjs()//,
-      // minify({
-      //   comments: false,
-      // }),
+      commonjs(),
+      minify({
+        comments: false,
+      }),
     ],
   },
 ]

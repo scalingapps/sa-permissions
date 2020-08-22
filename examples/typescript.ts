@@ -7,17 +7,19 @@ const appSecurity = new Security()
 const builder = new PermissionsBuilder(PermissionType)
 
 // add user permissions
-appSecurity.addUserPermissions({ // argument is of type AddUserPermissionsArgs
-	userId: userId,
-	permissions: {
-		Items: builder.fromKeys(['View', 'Add']),
-		Accounts: builder.fromKeys(['View']),
-	},
+appSecurity.addUserPermissions({
+  // argument is of type AddUserPermissionsArgs
+  userId: userId,
+  permissions: {
+    Items: builder.fromKeys(['View', 'Add']),
+    Accounts: builder.fromKeys(['View']),
+  },
 })
 
 // check for permissions
-appSecurity.hasPermissions({ // argument is of type HasPermissionsArgs
-	userId: 'test-user',
-	domain: 'Items',
-	permissionType: PermissionType.View,
+appSecurity.hasPermissions({
+  // argument is of type HasPermissionsArgs
+  userId: 'test-user',
+  domain: 'Items',
+  permissionType: PermissionType.View,
 })
