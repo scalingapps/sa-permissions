@@ -2,10 +2,10 @@
 
 [![npm version](https://badge.fury.io/js/sa-permissions.svg)](https://badge.fury.io/js/sa-permissions)
 
-Utilities to add permissions check to your TypeSCript/JavaScript app.
+Utilities to add permissions check to your TypeScript/JavaScript app.
 
-### example
-[in progress]
+### examples
+[in progress, see examples folder]
 
 ```
 const params: HasPermissionsArgs = {
