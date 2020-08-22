@@ -1,0 +1,19 @@
+import { PermissionTypeInterface } from '../sa-permissions';
+/**
+ * @name YourAppPermissionTypeInterface
+ * @description
+ * You will extend the PermissionTypeInterface with additional definitions
+ */
+export interface YourAppPermissionTypeInterface extends PermissionTypeInterface {
+    readonly Publish: number;
+    readonly Share: number;
+}
+/**
+ * @name YourAppPermissionType
+ * @description
+ * You will extend the current PermissionType instance as well.
+ * We have to pass an array with the name of the new definitions because in
+ * TS there is not an easy way to programmatically get properties from an interface.
+ * Just remember that these have ot match the property names in your interface (in this case Publish and Share)
+ */
+export declare const YourAppPermissionType: YourAppPermissionTypeInterface;
