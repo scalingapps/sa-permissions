@@ -6,9 +6,9 @@ export interface HasPermissionsArgs {
   permissionType: number
 }
 
-export interface AddUserPermissionsArgs { 
-	userId: string
-	permissions: { [key: string]: number } 
+export interface AddUserPermissionsArgs {
+  userId: string
+  permissions: { [key: string]: number }
 }
 
 export interface SecurityInterface {
