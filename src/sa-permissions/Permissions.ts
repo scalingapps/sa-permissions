@@ -32,7 +32,16 @@ export const Permissions: PermissionsStaticInterface = class implements Permissi
     // create an empty dictionary where to add additional custom permissions
     const additionalPermissions: { [key: string]: number } = {}
 
-    let factor = Object.keys(PermissionType).length - 1
+    // get keys
+    const keys: string[] = Object.keys(PermissionType)
+    // check if base zero
+    const firstValue = (<any>PermissionType)[keys[0]]
+
+    let factor = Object.keys(PermissionType).length
+    if (firstValue === 0) {
+      factor -= 1
+    }
+
     // assign values to each new permission type
     names.forEach((name) => [
       // double previous value

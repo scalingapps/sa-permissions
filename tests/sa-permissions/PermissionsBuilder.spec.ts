@@ -20,6 +20,14 @@ describe('PermissionsBuilder (of PermissionType)', () => {
     })
   })
 
+  describe('byExclusion: only Delete', () => {
+    it('should return expected value when excludes [Delete]', () => {
+      const permissions = builder.byExclusion(['Delete'])
+      const expected = PermissionType.View | PermissionType.Add | PermissionType.Update
+      expect(permissions).to.equal(expected)
+    })
+  })
+
   describe('fromRange', () => {
     it('should return expected value when includes from View to Delete', () => {
       const permissions = builder.fromRange(PermissionType.View, PermissionType.Update)

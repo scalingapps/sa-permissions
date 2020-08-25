@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { YourAppPermissionTypeInterface, YourAppPermissionType } from '@/yourapp/YourAppPermissionType'
-import { PermissionTypeInterface, PermissionType, PermissionsBuilder } from '@/sa-permissions'
+import { YourAppPermissionType } from '@/yourapp/YourAppPermissionType'
+import { PermissionsBuilder } from '@/sa-permissions'
 
 describe('PermissionsBuilder (of YourAppPermissionType)', () => {
   const builder = new PermissionsBuilder(YourAppPermissionType)
@@ -23,6 +23,19 @@ describe('PermissionsBuilder (of YourAppPermissionType)', () => {
         YourAppPermissionType.Publish |
         YourAppPermissionType.Share
 
+      expect(permissions).to.equal(expected)
+    })
+  })
+
+  describe('byExclusion: only Delete', () => {
+    it('should return expected value when excludes [Delete]', () => {
+      const permissions = builder.byExclusion(['Delete'])
+      const expected = 
+      YourAppPermissionType.View |
+      YourAppPermissionType.Add |
+      YourAppPermissionType.Update |
+      YourAppPermissionType.Publish |
+      YourAppPermissionType.Share
       expect(permissions).to.equal(expected)
     })
   })

@@ -4,7 +4,6 @@
  * Permission Types interface
  */
 export interface PermissionTypeInterface {
-  readonly None: number
   readonly View: number
   readonly Add: number
   readonly Update: number
@@ -19,7 +18,6 @@ export interface PermissionTypeInterface {
  * and extending its istance with Permissions.extendTypes (see yourapp/YourAppPermissionType.ts for sample code)
  */
 export const PermissionType: PermissionTypeInterface = Object.freeze({
-  None: 0,
   View: 1,
   Add: 2,
   Update: 4,

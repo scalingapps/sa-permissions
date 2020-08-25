@@ -4,7 +4,6 @@
  * Permission Types interface
  */
 export interface PermissionTypeInterface {
-    readonly None: number;
     readonly View: number;
     readonly Add: number;
     readonly Update: number;

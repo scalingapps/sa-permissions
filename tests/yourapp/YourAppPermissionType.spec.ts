@@ -21,7 +21,7 @@ describe('YourAppPermissionTypeKeyType', () => {
       expect(false).to.equal(result)
     })
 
-    it.only('should return false when permissions do NOT include Delete', () => {
+    it('should return false when permissions do NOT include Delete', () => {
       const permissions = builder.byExclusion(['Delete'])
       const result = Permissions.hasPermission(YourAppPermissionType.Delete, permissions)
       expect(false).to.equal(result)
