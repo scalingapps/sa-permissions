@@ -30,12 +30,13 @@ export class PermissionsBuilder implements PermissionsBuilderInterface {
     const types = this.types
     type keyType = keyof typeof types
 
-    let userPermissions: number = 0
+    let permissions: number = 0
     keys.forEach((key) => {
       const value = this.types[key as keyType]
-      userPermissions = userPermissions | value
+      const updated = permissions | value
+      permissions = updated
     })
-    return userPermissions
+    return permissions
   }
 
   public byExclusion(keysToExclude: string[]): number {
@@ -53,15 +54,16 @@ export class PermissionsBuilder implements PermissionsBuilderInterface {
     type keyType = keyof typeof types
 
     const keys: string[] = Object.getOwnPropertyNames(this.types) as string[]
-    let userPermissions: number = 0
+    let permissions: number = 0
 
     keys.forEach((key) => {
       const value = this.types[key as keyType]
       if (value >= fromValue && value <= toValue) {
-        userPermissions = userPermissions | value
+        const updated = permissions | value
+        permissions = updated
       }
     })
 
-    return userPermissions
+    return permissions
   }
 }

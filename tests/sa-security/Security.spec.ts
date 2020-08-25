@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { PermissionType, PermissionsBuilder } from '@/sa-permissions'
-import { HasPermissionsArgs, AddUserPermissionsArgs, Security } from '@/sa-security'
+import { HasPermissionsArgs, PermissionsInfo, Security } from '@/sa-security'
 
 describe('Security', () => {
   // setup
@@ -8,20 +8,20 @@ describe('Security', () => {
   // this is to help tests, but you would have the value stored in a db or alike
   const builder = new PermissionsBuilder(PermissionType)
 
-  const userId = 'test-user'
+  const id = 'test-user'
 
-  // our user permissions
-  appSecurity.addUserPermissions({
-    userId: userId,
+  // our user or role permissions
+  appSecurity.addPermissionsInfo({
+    id: id,
     permissions: {
       Items: builder.fromKeys(['View', 'Add']),
       Accounts: builder.fromKeys(['View']),
     },
-  } as AddUserPermissionsArgs)
+  } as PermissionsInfo)
 
   describe('Domain: Items:', () => {
     const params: HasPermissionsArgs = {
-      userId: userId,
+      id: id,
       domain: 'Items',
       permissionType: PermissionType.View,
     }
@@ -49,7 +49,7 @@ describe('Security', () => {
 
   describe('Domain: Accounts:', () => {
     const params: HasPermissionsArgs = {
-      userId: userId,
+      id: id,
       domain: 'Accounts',
       permissionType: PermissionType.View,
     }

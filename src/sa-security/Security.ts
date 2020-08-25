@@ -1,18 +1,18 @@
 import { Permissions } from '../sa-permissions/Permissions'
 
 export interface HasPermissionsArgs {
-  userId: string
+  id: string
   domain: string
   permissionType: number
 }
 
-export interface AddUserPermissionsArgs {
-  userId: string
+export interface PermissionsInfo {
+  id: string
   permissions: { [key: string]: number }
 }
 
 export interface SecurityInterface {
-  addUserPermissions(params: AddUserPermissionsArgs): void
+  addPermissionsInfo(params: PermissionsInfo): void
   hasPermissions(params: HasPermissionsArgs): boolean
 }
 
@@ -20,28 +20,25 @@ export interface SecurityInterface {
  * @name Security
  * @description
  * Implements the SecurityInterface. This will hold a lookup to each user permissions by domain.
- * The data has to be added through the addUserpermissions after the user logs in your app.
+ * The data has to be added through the addPermissionsInfo after the user logs in your app.
  * You can then use the hasPermissions method to check if a user has a specific permission on a specific domain.
  */
 export class Security implements SecurityInterface {
-  private permissionsByUser: Map<string, { [key: string]: number }> = new Map<
-    string,
-    { [key: string]: number }
-  >()
+  private dataMap: Map<string, { [key: string]: number }> = new Map<string, { [key: string]: number }>()
 
   constructor() {}
 
-  addUserPermissions(params: AddUserPermissionsArgs) {
-    this.permissionsByUser.set(params.userId, params.permissions)
+  addPermissionsInfo(params: PermissionsInfo) {
+    this.dataMap.set(params.id, params.permissions)
   }
 
   hasPermissions(params: HasPermissionsArgs): boolean {
-    const { userId, domain, permissionType } = params
+    const { id, domain, permissionType } = params
 
     // if our lookup contains data for this user
-    if (this.permissionsByUser.has(userId)) {
+    if (this.dataMap.has(id)) {
       // get the user permissions for all domains
-      const domainsPermissions = this.permissionsByUser.get(userId)
+      const domainsPermissions = this.dataMap.get(id)
       // if has permissions on this domain
       if (domainsPermissions && domainsPermissions[domain]) {
         // check permissions for the specific domain

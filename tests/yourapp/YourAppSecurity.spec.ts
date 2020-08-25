@@ -9,10 +9,10 @@ describe('appSecurity', () => {
 
   // this is to help tests, but you would have the value stored in a db or alike
   const builder = new PermissionsBuilder(YourAppPermissionType)
-  const userId = 'your-app-user'
+  const id = 'your-app-user'
   // our user permissions
-  appSecurity.addUserPermissions({
-    userId: userId,
+  appSecurity.addPermissionsInfo({
+    id: id,
     permissions: {
       Items: builder.fromKeys(['View', 'Publish', 'Share']),
       Accounts: builder.fromKeys(['View', 'Publish']),
@@ -21,7 +21,7 @@ describe('appSecurity', () => {
 
   describe('Domain: Items:', () => {
     const params: HasPermissionsArgs = {
-      userId: userId,
+      id: id,
       domain: 'Items',
       permissionType: YourAppPermissionType.View,
     }
@@ -61,7 +61,7 @@ describe('appSecurity', () => {
 
   describe('Domain: Accounts:', () => {
     const params: HasPermissionsArgs = {
-      userId: userId,
+      id: id,
       domain: 'Accounts',
       permissionType: YourAppPermissionType.View,
     }

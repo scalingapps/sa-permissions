@@ -8,21 +8,21 @@ describe('Permissions', () => {
   const builder = new PermissionsBuilder(PermissionType)
 
   describe('hasPermission', () => {
-    it('should return true when user userPermissions include View', () => {
-      const userPermissions = builder.fromRange(PermissionType.View, PermissionType.Delete)
-      let result = Permissions.hasPermission(PermissionType.View, userPermissions)
+    it('should return true when permissions include View', () => {
+      const permissions = builder.fromRange(PermissionType.View, PermissionType.Delete)
+      let result = Permissions.hasPermission(PermissionType.View, permissions)
       expect(true).to.equal(result)
     })
 
-    it('should return false when user userPermissions do NOT include View', () => {
-      const userPermissions = builder.byExclusion(['View'])
-      const result = Permissions.hasPermission(PermissionType.View, userPermissions)
+    it('should return false when permissions do NOT include View', () => {
+      const permissions = builder.byExclusion(['View'])
+      const result = Permissions.hasPermission(PermissionType.View, permissions)
       expect(false).to.equal(result)
     })
 
-    it('should return false when user userPermissions do NOT include Delete', () => {
-      const userPermissions = builder.byExclusion(['Delete'])
-      const result = Permissions.hasPermission(PermissionType.Delete, userPermissions)
+    it('should return false when permissions do NOT include Delete', () => {
+      const permissions = builder.byExclusion(['Delete'])
+      const result = Permissions.hasPermission(PermissionType.Delete, permissions)
       expect(false).to.equal(result)
     })
   })

@@ -9,7 +9,7 @@ Utilities to add permissions check to your TypeScript/JavaScript app.
 
 ```
 const params: HasPermissionsArgs = {
-	userId: userId,
+	id: id,
 	domain: 'Items',
 	permissionType: PermissionType.View,
 }
