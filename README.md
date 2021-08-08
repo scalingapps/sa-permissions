@@ -2,6 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/sa-permissions.svg)](https://badge.fury.io/js/sa-permissions)
 
+--- ATTENTION: this source code is No longer actively maintained ---
+
 Utilities to add permissions check to your TypeScript/JavaScript app.
 
 ### examples
