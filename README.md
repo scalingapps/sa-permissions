@@ -21,5 +21,5 @@ const result = appSecurity.hasPermissions(params)
 ##### Unit tests results
 <img src="readme-images/unit-tests.png" width="80%" />
 
-
-
+#### Remarks
+Dependabots vulnerabilities last fixed on 08/08/2021
