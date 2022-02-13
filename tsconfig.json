@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
 		"target": "es2015",
-		"module": "commonjs",
+		"module": "ES2020",
 		"outDir": "lib",
     "strict": true,
     "declaration": true,

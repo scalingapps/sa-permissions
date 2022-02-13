@@ -2,10 +2,20 @@
   "name": "sa-permissions",
   "version": "1.2.1",
   "description": "A package that helps make it easy to add permissions to your JavaScript/TypeScript app",
-  "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "type": "module",
+  "exports": "./lib/index.js",
+  "files": [
+    "lib",
+    "*.md"
+  ],
+  "engines": {
+    "node": "^14.13.1 || >=16.0.0"
+  },
   "scripts": {
-    "build": "tsc --preserveSymlinks true; npm run rollup-browser",
+    "build": "npm run build-esm; npm run build-cjs; npm run rollup-browser",
+    "build-esm": "tsc -p --preserveSymlinks true tsconfig.json",
+    "build-cjs": "tsc -p --preserveSymlinks true tsconfig-cjs.json",
     "rollup-browser": "rollup -c rollup.browser.js",
     "lint": "prettier --write '**/*.ts'",
     "test": "TS_NODE_PROJECT='./tsconfig.tests.json' mocha -r ts-node/register -r tsconfig-paths/register tests/**/*.spec.ts"

@@ -23,3 +23,6 @@ const result = appSecurity.hasPermissions(params)
 
 #### Remarks
 Dependabots vulnerabilities last fixed on 08/08/2021
+
+
+    "build": "tsc --preserveSymlinks true; npm run rollup-browser",
