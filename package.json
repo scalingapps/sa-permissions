@@ -44,7 +44,7 @@
     "chai": "^4.2.0",
     "jsdom": "^16.4.0",
     "jsdom-global": "^3.0.2",
-    "mocha": "^8.1.1",
+    "mocha": "^10.2.0",
     "rollup": "^2.26.4",
     "rollup-plugin-babel-minify": "^10.0.0",
     "rollup-plugin-commonjs": "^10.1.0",
